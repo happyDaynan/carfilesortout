@@ -29,7 +29,7 @@ def to_pandas(carfile_dict):
     # count car color
     cars_df["color_count"] = cars_df["color"].apply(lambda x : len(x))
     # Processing values split "["  "]", replace " ' "
-    cars_df["color"] = cars_df["color"].apply(lambda x : str(x).split("[")[1].split("]")[0].replace("'",""))
+    cars_df["color"] = cars_df["color"].apply(lambda x : x.split("[")[1].split("]")[0].replace("'",""))
     # drop columns 0 and 1
     cars_df = cars_df.drop([0,1], axis=1)
     # to_csv
@@ -42,7 +42,7 @@ def to_pandas(carfile_dict):
     
 
 if __name__ == "__main__":
-    
+
     dir_path = "/Users/dingnanwu/Desktop/1028-a"
     # creat a carfile_dict
     carfile_dict = collections.defaultdict(list)
