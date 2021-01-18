@@ -7,6 +7,9 @@ def process_carfile(dir_path):
 
     carsfile_name = [name.split(".mp4")[0] for name in carsfiles_list if name != ".DS_Store"]
     
+    # creat a carfile_dict
+    carfile_dict = collections.defaultdict(list)
+
     for carsfile in carsfile_name:
         if len(carsfile.split("_")) == 6:
             cars = "_".join(carsfile.split("_")[:2])
@@ -41,11 +44,11 @@ def to_pandas(carfile_dict, path_info):
         cars_df.to_csv("./carfileinfo.csv", 'a', encoding='utf-8-sig', index=False)
     else:
         cars_df.to_csv("./carfileinfo.csv",encoding='utf-8-sig', index=False)
-    r = cars_df
-    return r
+    
+    return cars_df
 
-def to_mysql(r):
-    print("i'm",r)
+def to_mysql(cars_df):
+    print(cars_df)
 
 
 
@@ -59,10 +62,10 @@ if __name__ == "__main__":
     # get dirpath    
     dir_path = path_info['dir_path']
     
-    # creat a carfile_dict
-    carfile_dict = collections.defaultdict(list)
-    r = ""
-    process_carfile(dir_path)
-    to_pandas(carfile_dict, path_info) 
-    to_mysql(r)     
+   
+
+    
+    carfile_name = process_carfile(dir_path)
+    topandas =to_pandas(carfile_name , path_info) 
+    to_mysql(topandas)     
 
