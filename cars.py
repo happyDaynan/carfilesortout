@@ -48,6 +48,7 @@ def to_pandas(carfile_dict, path_info):
     return cars_df
 
 def to_mysql(cars_df):
+    cars_df["incvat"] = "0"
     print(cars_df)
 
 
@@ -63,9 +64,7 @@ if __name__ == "__main__":
     dir_path = path_info['dir_path']
     
    
-
-    
     carfile_name = process_carfile(dir_path)
-    topandas =to_pandas(carfile_name , path_info) 
+    topandas = to_pandas(carfile_name , path_info) 
     to_mysql(topandas)     
 
