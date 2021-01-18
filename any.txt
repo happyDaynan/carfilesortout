@@ -1,5 +1,6 @@
 {
     "mysql": ["localhost","1234"],
-    "dir_path" : "/Users/dingnanwu/Desktop/1028-a"
+    "dir_path" : "/Users/dingnanwu/Desktop/1028-a",
+    "filepath" : "./carfileinfo.csv"
 }
 

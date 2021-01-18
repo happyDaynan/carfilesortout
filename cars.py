@@ -17,7 +17,8 @@ def process_carfile(dir_path):
     
     return carfile_dict
 
-def to_pandas(carfile_dict):
+def to_pandas(carfile_dict, path_info):
+    
     cars_df = pd.DataFrame([carfile_dict.keys(), carfile_dict.values()]).T
     
     # Processing car_name
@@ -34,13 +35,20 @@ def to_pandas(carfile_dict):
     cars_df = cars_df.drop([0,1], axis=1)
     
     # to_csv
-    filepath = "./carfileinfo.csv"
+    filepath = path_info['filepath']
     if os.path.isfile(filepath):
+        
         cars_df.to_csv("./carfileinfo.csv", 'a', encoding='utf-8-sig', index=False)
     else:
         cars_df.to_csv("./carfileinfo.csv",encoding='utf-8-sig', index=False)
-     
-    
+    r = cars_df
+    return r
+
+def to_mysql(r):
+    print("i'm",r)
+
+
+
 
 if __name__ == "__main__":
 
@@ -53,7 +61,8 @@ if __name__ == "__main__":
     
     # creat a carfile_dict
     carfile_dict = collections.defaultdict(list)
-
+    r = ""
     process_carfile(dir_path)
-    to_pandas(carfile_dict)      
+    to_pandas(carfile_dict, path_info) 
+    to_mysql(r)     
 
