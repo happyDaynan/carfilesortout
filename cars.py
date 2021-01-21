@@ -39,8 +39,7 @@ def to_pandas(carfile_dict, path_info):
     
     # to_csv
     filepath = path_info['filepath']
-    if os.path.isfile(filepath):
-        
+    if os.path.isfile(filepath): 
         cars_df.to_csv("./carfileinfo.csv", 'a', encoding='utf-8-sig', index=False)
     else:
         cars_df.to_csv("./carfileinfo.csv",encoding='utf-8-sig', index=False)
