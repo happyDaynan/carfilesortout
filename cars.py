@@ -1,5 +1,7 @@
 import collections, os, json
 import pandas as pd
+import mysql.connector
+from sqlalchemy import create_engine
 
 
 def process_carfile(dir_path):
@@ -39,16 +41,25 @@ def to_pandas(carfile_dict, path_info):
     
     # to_csv
     filepath = path_info['filepath']
-    if os.path.isfile(filepath): 
+    if os.path.isfile(filepath):
+        
         cars_df.to_csv("./carfileinfo.csv", 'a', encoding='utf-8-sig', index=False)
     else:
+        pass
         cars_df.to_csv("./carfileinfo.csv",encoding='utf-8-sig', index=False)
     
     return cars_df
 
 def to_mysql(cars_df):
+    # add new df column
     cars_df["incvat"] = "0"
-    print(cars_df)
+    # create_engine 
+    engine = create_engine(f"mysql+pymysql://{path_info['mysql'][0]}:{path_info['mysql'][1]}@{path_info['mysql'][2]}/{path_info['mysql'][3]}")
+    # connect
+    cnx = engine.connect()
+    cars_df.to_sql("carfiles", cnx, index=False, if_exists="append")
+    cnx.close()
+    
 
 
 

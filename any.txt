@@ -1,5 +1,5 @@
 {
-    "mysql": ["localhost","1234"],
+    "mysql": ["root","2020aiot","localhost:3306", "cars"],
     "dir_path" : "/Users/dingnanwu/Desktop/1028-a",
     "filepath" : "./carfileinfo.csv"
 }
